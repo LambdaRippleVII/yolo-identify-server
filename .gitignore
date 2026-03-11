@@ -120,7 +120,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -217,18 +216,6 @@ coverage/
 junit.xml
 .pytest_cache/
 
-# 环境变量
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# 模型文件（根据项目需要调整）
-*.pt
-*.pth
-*.ckpt
-*.weights
-
 # 视频和图像缓存
 *.mp4
 *.avi
@@ -237,7 +224,3 @@ junit.xml
 *.jpeg
 *.png
 *.gif
-
-# 项目特定
-yolo_models/
-send_msg_config/
