@@ -1,0 +1,15 @@
+{
+  "product_id": "$product_id$",
+  "device_id": "$device_id$",
+  "server_title": "$server_title$",
+  "server_version": "$server_version$",
+  "yolo_identify": !{
+    "xlt": "$x1$",
+    "ylt": "$y1$",
+    "xrb": "$x2$",
+    "yrb": "$y2$",
+    "conf": "$conf$",
+    "cls_name": "$cls_name$",
+    "cls": "$cls$"
+  }!
+}
