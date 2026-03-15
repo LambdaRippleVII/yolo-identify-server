@@ -24,6 +24,7 @@ def web_cap_thread():
     logger.info(f"自动曝光:{cap.get(cv2.CAP_PROP_AUTO_EXPOSURE)}")
     # 设置曝光值
     cap.set(cv2.CAP_PROP_EXPOSURE, settings.CAP_PROP_EXPOSURE)
+    logger.info(f"曝光值:{cap.get(cv2.CAP_PROP_EXPOSURE)}")
 
     while True:
         try:
