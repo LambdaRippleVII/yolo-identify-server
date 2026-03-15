@@ -144,6 +144,34 @@ def assignment_send_msg_config():
 
     global_info.SEND_MSG_CONFIG = re.sub(pattern, replacer, config_info)
 
+def init_cap():
+    """ 初始化摄像头 """
+    import subprocess
+    import platform
+
+    system_name = platform.system()
+    if platform.system() == "Linux":
+        cmd = [
+            "v4l2-ctl",
+            "-d", settings.CAP_SOURCE,
+            f"--set-ctrl=auto_exposure={settings.CAP_PROP_AUTO_EXPOSURE}"
+        ]
+        try:
+            # 执行命令
+            result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+            print("设置成功！")
+            if result.stdout:
+                print(result.stdout)
+        except FileNotFoundError:
+            print("错误: 找不到 'v4l2-ctl' 命令。")
+            print("解决方法: 请在终端安装 v4l-utils 包。")
+            print("  Ubuntu/Debian: sudo apt install v4l-utils")
+            print("  CentOS/RHEL:   sudo yum install v4l-utils")
+        except subprocess.CalledProcessError as e:
+            print(f"命令执行失败 (返回码 {e.returncode}):")
+            print(e.stderr)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # 连接MQTT服务器
@@ -180,6 +208,8 @@ async def lifespan(app: FastAPI):
     # 启动视频捕获线程
     from app.handler.video_handler import start_video_capture
     start_video_capture()
+
+    init_cap()
 
     yield
 

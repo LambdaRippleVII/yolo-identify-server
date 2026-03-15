@@ -1,6 +1,7 @@
 import logging
 import threading
 import time
+import platform
 
 import cv2
 from loguru import logger
@@ -17,7 +18,12 @@ def web_cap_thread():
     global identify_frame, cap_frame
 
     # 打开网络摄像头
-    cap = cv2.VideoCapture(0)
+    try:
+        cap_source = int(settings.CAP_SOURCE)
+        cap = cv2.VideoCapture(cap_source)
+    except:
+        cap_source = settings.CAP_SOURCE
+        cap = cv2.VideoCapture(cap_source, cv2.CAP_V4L2)
 
     # 设置编码格式
     cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*settings.CAP_PROP_FOURCC))
