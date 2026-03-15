@@ -70,7 +70,7 @@
 
 ### 1. 环境准备
 
-确保已安装Python 3.8+，然后安装依赖包：
+确保已安装Python 3.10+，然后安装依赖包：
 
 ```bash
 pip install -r requirements.txt
