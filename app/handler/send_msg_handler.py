@@ -87,7 +87,7 @@ def handle_send_msg(results):
             SEND_MSG_CONFIG_DICT["$cls_name$"] = cls_name
 
             # 过滤盒子
-            if global_info.MODEL_CONFIG is not None:
+            if global_info.MODEL_CONFIG and  global_info.MODEL_CONFIG is not None:
                 if cls_name not in global_info.MODEL_CONFIG:
                     continue
                 if conf < global_info.MODEL_CONFIG[cls_name]:

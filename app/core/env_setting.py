@@ -96,6 +96,6 @@ class GlobalInfo:
 
     MODEL_CONFIG_PATH: Path | None = None
 
-    MODEL_CONFIG: dict[str, float]
+    MODEL_CONFIG: dict[str, float] | None = None
 
 global_info = GlobalInfo()
