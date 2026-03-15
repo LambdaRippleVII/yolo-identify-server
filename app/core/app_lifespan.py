@@ -2,6 +2,7 @@ import re
 from contextlib import asynccontextmanager
 from pathlib import Path
 
+import yaml
 from fastapi import FastAPI
 from loguru import logger
 from ultralytics import YOLO
@@ -66,6 +67,31 @@ def init_send_msg_config_file_path():
     # 记录信息到全局
     global_info.SEND_MSG_CONFIG_FILE = send_msg_config_file_path
 
+def init_model_config_file_path():
+    """ 初始化模型配置文件路径 """
+    model_config_file_path = Path(settings.MODEL_CONFIG_PATH)
+    if not model_config_file_path.exists():
+        # 尝试按照名称寻找配置文件
+        config_file_name = model_config_file_path.stem
+        config_file_name = f"{config_file_name}.json"
+        model_config_file_path = Path(__file__).parent.parent.parent / "model_config" / config_file_name
+    # 再次检查
+    if not model_config_file_path.exists():
+        logger.error(f"模型配置文件无法找到: {settings.MODEL_CONFIG_PATH}")
+        return
+
+    # 记录信息到全局
+    global_info.MODEL_CONFIG_PATH = model_config_file_path
+    logger.info(f"已初始化模型配置文件,配置文件为: {global_info.MODEL_CONFIG_PATH.absolute()}")
+
+def init_model_config():
+    """ 初始化模型配置 """
+    if global_info.MODEL_CONFIG_PATH:
+        with open(global_info.MODEL_CONFIG_PATH, "r", encoding="utf-8") as f:
+            global_info.MODEL_CONFIG = yaml.safe_load(f)
+            if global_info.MODEL_CONFIG is None:
+                global_info.MODEL_CONFIG = {}
+
 def init_up_topic_rule():
     """ 初始化上行主题规则 """
     topic_info = settings.UP_TOPIC_RULE
@@ -121,14 +147,21 @@ async def lifespan(app: FastAPI):
     # === 初始化全局路径配置 ===
     # 初始化YOLO路径配置
     init_yolo_path()
-    logger.info(f"已初始化YOLO模型,模型为: {global_info.YOLO_MODEL_PATH}")
+    logger.info(f"已初始化YOLO模型,模型为: {global_info.YOLO_MODEL_PATH.absolute()}")
     # 初始化发送消息配置文件路径
     init_send_msg_config_file_path()
-    logger.info(f"已初始化发送消息配置文件,配置文件为: {global_info.SEND_MSG_CONFIG_FILE}")
+    logger.info(f"已初始化发送消息配置文件,配置文件为: {global_info.SEND_MSG_CONFIG_FILE.absolute()}")
 
     # 初始化上行主题规则
     init_up_topic_rule()
     logger.info(f"已初始化上行主题规则,上行主题为: {global_info.UP_TOPIC_RULE}")
+
+    # 初始化模型配置文件路径
+    init_model_config_file_path()
+
+    # 初始化模型配置
+    init_model_config()
+    logger.info(f"已初始化模型配置,配置为:\n{global_info.MODEL_CONFIG}")
 
     # 初始化YOLO模型
     init_yolo_model()

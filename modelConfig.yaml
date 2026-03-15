@@ -1,0 +1,80 @@
+person: 0.55
+bicycle: 0.40
+car: 0.58
+motorcycle: 0.45
+airplane: 0.50
+bus: 0.55
+train: 0.52
+truck: 0.50
+boat: 0.42
+traffic light: 0.48
+fire hydrant: 0.35
+stop sign: 0.55
+parking meter: 0.32
+bench: 0.38
+bird: 0.22
+cat: 0.35
+dog: 0.36
+horse: 0.40
+sheep: 0.38
+cow: 0.42
+elephant: 0.48
+bear: 0.45
+zebra: 0.40
+giraffe: 0.42
+backpack: 0.28
+umbrella: 0.30
+handbag: 0.25
+tie: 0.20
+suitcase: 0.32
+frisbee: 0.28
+skis: 0.35
+snowboard: 0.35
+sports ball: 0.25
+kite: 0.24
+baseball bat: 0.28
+baseball glove: 0.26
+skateboard: 0.30
+surfboard: 0.32
+tennis racket: 0.28
+bottle: 0.26
+wine glass: 0.24
+cup: 0.25
+fork: 0.22
+knife: 0.24
+spoon: 0.22
+bowl: 0.26
+banana: 0.28
+apple: 0.29
+sandwich: 0.25
+orange: 0.27
+broccoli: 0.24
+carrot: 0.23
+hot dog: 0.26
+pizza: 0.30
+donut: 0.28
+cake: 0.29
+chair: 0.35
+couch: 0.40
+potted plant: 0.30
+bed: 0.42
+dining table: 0.38
+toilet: 0.45
+tv: 0.40
+laptop: 0.38
+mouse: 0.25
+remote: 0.24
+keyboard: 0.30
+cell phone: 0.22
+microwave: 0.38
+oven: 0.36
+toaster: 0.32
+sink: 0.35
+refrigerator: 0.45
+book: 0.26
+clock: 0.30
+vase: 0.28
+scissors: 0.24
+teddy bear: 0.28
+hair drier: 0.20
+toothbrush: 0.18

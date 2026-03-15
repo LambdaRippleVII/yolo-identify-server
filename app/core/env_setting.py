@@ -47,6 +47,8 @@ class Settings(BaseSettings):
     CAP_SOURCE: str = Field(validation_alias="CAP_SOURCE")
     # 当前使用的模型名称或地址
     MODEL_PATH: str = Field(validation_alias="MODEL_PATH")
+    # 模型配置文件名称或地址
+    MODEL_CONFIG_PATH: str = Field(validation_alias="MODEL_CONFIG_PATH")
 
     # === 接入设备配置 ===
     # 当前此服务产品ID
@@ -66,7 +68,14 @@ class Settings(BaseSettings):
     # 自动曝光设置
     CAP_PROP_AUTO_EXPOSURE: int = Field(default=1, validation_alias="CAP_PROP_AUTO_EXPOSURE")
     # 曝光时间设置
-    CAP_PROP_EXPOSURE: int = Field(default=-6, validation_alias="CAP_PROP_EXPOSURE")
+    CAP_PROP_EXPOSURE: float = Field(default=-6, validation_alias="CAP_PROP_EXPOSURE")
+    # 编码格式设置(MJPG,YUYV,H264,NV12)
+    CAP_PROP_FOURCC: str = Field(default="MJPG", validation_alias="CAP_PROP_FOURCC")
+    # 帧率设置
+    CAP_PROP_FPS: int = Field(default=30, validation_alias="CAP_PROP_FPS")
+    # 宽高设置
+    CAP_PROP_FRAME_WIDTH: int = Field(default=640, validation_alias="CAP_PROP_FRAME_WIDTH")
+    CAP_PROP_FRAME_HEIGHT: int = Field(default=480, validation_alias="CAP_PROP_FRAME_HEIGHT")
 
 settings = Settings()
 
@@ -84,5 +93,9 @@ class GlobalInfo:
     YOLO_MODEL: YOLO
 
     SEND_MSG_CONFIG: str
+
+    MODEL_CONFIG_PATH: Path | None = None
+
+    MODEL_CONFIG: dict[str, float]
 
 global_info = GlobalInfo()

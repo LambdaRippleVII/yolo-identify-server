@@ -19,6 +19,12 @@ def web_cap_thread():
     # 打开网络摄像头
     cap = cv2.VideoCapture(0)
 
+    # 设置编码格式
+    cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*settings.CAP_PROP_FOURCC))
+    # 设置帧率
+    cap.set(cv2.CAP_PROP_FPS, settings.CAP_PROP_FPS)
+    # 设置宽高
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, settings.CAP_PROP_FRAME_WIDTH)
     # 设置自动曝光
     cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, settings.CAP_PROP_AUTO_EXPOSURE)
     logger.info(f"自动曝光:{cap.get(cv2.CAP_PROP_AUTO_EXPOSURE)}")
@@ -44,8 +50,24 @@ def web_cap_thread():
 
             # 模型识别
             results = global_info.YOLO_MODEL(frame)
-            # 保存最新帧
-            identify_frame = results[0].plot()
+
+            # 绘制图像
+            identify_frame = frame
+            for box in results[0].boxes:
+                x1, y1, x2, y2 = box.xyxy[0]
+                conf = box.conf[0]
+                cls = box.cls[0]
+                cls_name = results[0].names[int(cls)]
+
+                # 过滤盒子
+                if global_info.MODEL_CONFIG is not None:
+                    if cls_name not in global_info.MODEL_CONFIG:
+                        continue
+                    if conf < global_info.MODEL_CONFIG[cls_name]:
+                        continue
+
+                cv2.rectangle(identify_frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
+                cv2.putText(identify_frame, f"{cls_name} {conf:.2f}", (int(x1), int(y1) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
             # 发送消息
             handle_send_msg(results)
