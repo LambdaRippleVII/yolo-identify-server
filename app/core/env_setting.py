@@ -62,6 +62,12 @@ class Settings(BaseSettings):
     # 发送消息的json配置文件地址
     SEND_MSG_CONFIG_FILE: str = Field(validation_alias="SEND_MSG_CONFIG_FILE")
 
+    # === 摄像头设置 ===
+    # 自动曝光设置
+    CAP_PROP_AUTO_EXPOSURE: int = Field(default=1, validation_alias="CAP_PROP_AUTO_EXPOSURE")
+    # 曝光时间设置
+    CAP_PROP_EXPOSURE: int = Field(default=-6, validation_alias="CAP_PROP_EXPOSURE")
+
 settings = Settings()
 
 class GlobalInfo:

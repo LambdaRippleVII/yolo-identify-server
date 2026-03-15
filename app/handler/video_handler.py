@@ -19,6 +19,12 @@ def web_cap_thread():
     # 打开网络摄像头
     cap = cv2.VideoCapture(0)
 
+    # 设置自动曝光
+    cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, settings.CAP_PROP_AUTO_EXPOSURE)
+    logger.info(f"自动曝光:{cap.get(cv2.CAP_PROP_AUTO_EXPOSURE)}")
+    # 设置曝光值
+    cap.set(cv2.CAP_PROP_EXPOSURE, settings.CAP_PROP_EXPOSURE)
+
     while True:
         try:
             if not cap.isOpened():
