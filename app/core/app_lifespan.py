@@ -70,6 +70,7 @@ def init_send_msg_config_file_path():
 def init_model_config_file_path():
     """ 初始化模型配置文件路径 """
     if settings.MODEL_CONFIG_PATH == "":
+        settings.MODEL_CONFIG_PATH = None
         return
     model_config_file_path = Path(settings.MODEL_CONFIG_PATH)
     if not model_config_file_path.exists():
@@ -80,6 +81,7 @@ def init_model_config_file_path():
     # 再次检查
     if not model_config_file_path.exists():
         logger.error(f"模型配置文件无法找到: {settings.MODEL_CONFIG_PATH}")
+        settings.MODEL_CONFIG_PATH = None
         return
 
     # 记录信息到全局
