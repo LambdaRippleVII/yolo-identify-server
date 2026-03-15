@@ -25,6 +25,7 @@ def web_cap_thread():
     cap.set(cv2.CAP_PROP_FPS, settings.CAP_PROP_FPS)
     # 设置宽高
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, settings.CAP_PROP_FRAME_WIDTH)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, settings.CAP_PROP_FRAME_HEIGHT)
     # 设置自动曝光
     cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, settings.CAP_PROP_AUTO_EXPOSURE)
     logger.info(f"自动曝光:{cap.get(cv2.CAP_PROP_AUTO_EXPOSURE)}")
