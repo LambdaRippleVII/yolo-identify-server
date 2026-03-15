@@ -40,15 +40,15 @@ class Settings(BaseSettings):
     # MQTT连接密码
     MQTT_PASSWORD: str = Field(default= "", validation_alias="MQTT_PASSWORD")
     # MQTT客户端ID
-    MQTT_CLIENT_ID: str = Field(validation_alias="MQTT_CLIENT_ID")
+    MQTT_CLIENT_ID: str = Field(default="fastapi-qll", validation_alias="MQTT_CLIENT_ID")
 
     # === 模型配置相关 ===
     # 视频源地址
-    CAP_SOURCE: str = Field(validation_alias="CAP_SOURCE")
+    CAP_SOURCE: str = Field(default= "", validation_alias="CAP_SOURCE")
     # 当前使用的模型名称或地址
-    MODEL_PATH: str = Field(validation_alias="MODEL_PATH")
+    MODEL_PATH: str = Field(default="", validation_alias="MODEL_PATH")
     # 模型配置文件名称或地址
-    MODEL_CONFIG_PATH: str = Field(validation_alias="MODEL_CONFIG_PATH")
+    MODEL_CONFIG_PATH: str = Field(default= "", validation_alias="MODEL_CONFIG_PATH")
 
     # === 接入设备配置 ===
     # 当前此服务产品ID

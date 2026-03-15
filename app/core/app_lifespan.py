@@ -69,6 +69,8 @@ def init_send_msg_config_file_path():
 
 def init_model_config_file_path():
     """ 初始化模型配置文件路径 """
+    if settings.MODEL_CONFIG_PATH == "":
+        return
     model_config_file_path = Path(settings.MODEL_CONFIG_PATH)
     if not model_config_file_path.exists():
         # 尝试按照名称寻找配置文件
@@ -161,7 +163,8 @@ async def lifespan(app: FastAPI):
 
     # 初始化模型配置
     init_model_config()
-    logger.info(f"已初始化模型配置,配置为:\n{global_info.MODEL_CONFIG}")
+    if global_info.MODEL_CONFIG_PATH:
+        logger.info(f"已初始化模型配置文件,配置文件为: {global_info.MODEL_CONFIG_PATH.absolute()}")
 
     # 初始化YOLO模型
     init_yolo_model()
