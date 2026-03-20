@@ -49,8 +49,6 @@ class Settings(BaseSettings):
     MODEL_PATH: str = Field(default="", validation_alias="MODEL_PATH")
     # 模型配置文件名称或地址
     MODEL_CONFIG_PATH: str = Field(default= "", validation_alias="MODEL_CONFIG_PATH")
-    # 模型识别跳帧数量，默认为0
-    SKIP_FRAME_NUM: int = Field(default=0, validation_alias="SKIP_FRAME_NUM")
 
     # === 接入设备配置 ===
     # 当前此服务产品ID
@@ -68,7 +66,7 @@ class Settings(BaseSettings):
 
     # === 摄像头设置 ===
     # 自动曝光设置
-    CAP_PROP_AUTO_EXPOSURE: float = Field(default=1.0, validation_alias="CAP_PROP_AUTO_EXPOSURE")
+    CAP_PROP_AUTO_EXPOSURE: int = Field(default=1, validation_alias="CAP_PROP_AUTO_EXPOSURE")
     # 曝光时间设置
     CAP_PROP_EXPOSURE: float = Field(default=-6, validation_alias="CAP_PROP_EXPOSURE")
     # 编码格式设置(MJPG,YUYV,H264,NV12)
