@@ -2,6 +2,8 @@
 
 这是一个基于YOLO算法的实时识别系统，能够从视频流中检测和识别目标，并通过MQTT协议上报识别结果。
 
+**开源地址：**https://github.com/LambdaRippleVII/yolo-identify-server
+
 该系统特别适用于：
 - 农业病虫害监测
 - 工业缺陷检测
