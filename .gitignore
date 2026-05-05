@@ -172,6 +172,7 @@ htmlcov/
 venv/
 env/
 .DS_Store
+.env
 
 # 编译输出
 *.pyc
